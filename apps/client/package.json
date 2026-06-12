@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@taskflow/shared": "*",
+    "@taskflow/shared": "file:../../packages/shared",
     "@tanstack/react-query": "^5.28.6",
     "@tanstack/react-query-devtools": "^5.28.6",
     "axios": "^1.6.8",
