@@ -2,25 +2,21 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy root package files
-COPY package.json package-lock.json ./
-COPY apps/server/package.json ./apps/server/
-COPY packages/shared/package.json ./packages/shared/
+# Copy package files
+COPY package.json ./
+COPY prisma ./prisma
 
 # Install dependencies
 RUN npm install
 
-# Copy source code
-COPY packages/shared ./packages/shared
-COPY apps/server ./apps/server
+# Copy source
+COPY . .
 
 # Generate Prisma client
-RUN cd apps/server && npx prisma generate
+RUN npx prisma generate
 
 # Build TypeScript
-RUN cd apps/server && npm run build
-
-WORKDIR /app/apps/server
+RUN npm run build
 
 EXPOSE 4000
 
