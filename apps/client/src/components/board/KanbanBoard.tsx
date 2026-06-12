@@ -133,7 +133,7 @@ export function KanbanBoard({ boardId, members }: KanbanBoardProps) {
 
       {/* Ghost card shown while dragging */}
       <DragOverlay dropAnimation={{ duration: 150, easing: "cubic-bezier(0.18, 0.67, 0.6, 1.22)" }}>
-        {activeTask && <TaskCard task={activeTask} isDragOverlay />}
+        {activeTask && <TaskCard task={activeTask} boardId={boardId} isDragOverlay />}
       </DragOverlay>
     </DndContext>
   );
