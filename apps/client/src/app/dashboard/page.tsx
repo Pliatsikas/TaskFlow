@@ -7,8 +7,11 @@ import { AuthGuard } from "@/components/layout/AuthGuard";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { useWorkspaces, useCreateWorkspace, useCreateBoard, useDeleteBoard } from "@/hooks/useWorkspaces";
 import { useAuthStore } from "@/store/auth.store";
+import { Workspace, Board } from "@taskflow/shared";
 
-function BoardCard({ board, workspaceId }: { board: any; workspaceId: string }) {
+type WorkspaceWithBoards = Workspace & { boards: Board[] };
+
+function BoardCard({ board, workspaceId }: { board: Board; workspaceId: string }) {
   const deleteBoard = useDeleteBoard(workspaceId);
 
   return (
@@ -107,7 +110,7 @@ export default function DashboardPage() {
             )}
 
             {/* Workspace sections */}
-            {workspaces?.map((ws) => (
+            {(workspaces as WorkspaceWithBoards[])?.map((ws) => (
               <div key={ws.id} className="mb-8">
                 <div className="flex items-center justify-between mb-3">
                   <h2 className="font-medium text-gray-700">{ws.name}</h2>
@@ -118,8 +121,8 @@ export default function DashboardPage() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                   {/* Board cards */}
-                  {(ws as any).boards?.map((board: any) => (
-                  <BoardCard key={board.id} board={board} workspaceId={ws.id} />
+                  {ws.boards?.map((board) => (
+                    <BoardCard key={board.id} board={board} workspaceId={ws.id} />
                   ))}
                   {/* New board button */}
                   <button onClick={() => setNewBoardFor(ws.id)}
