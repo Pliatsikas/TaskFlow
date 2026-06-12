@@ -21,9 +21,7 @@ export function Sidebar() {
     <aside className="w-56 h-screen flex flex-col border-r border-gray-200 bg-white px-3 py-4">
       {/* Logo */}
       <div className="flex items-center gap-2 px-2 mb-6">
-        <div className="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
-          <span className="text-white text-sm font-bold">T</span>
-        </div>
+        <img src="/favicon.ico" alt="TaskFlow" className="w-8 h-8" />
         <span className="font-semibold text-gray-900">TaskFlow</span>
       </div>
 

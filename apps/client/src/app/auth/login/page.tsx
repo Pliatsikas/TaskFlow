@@ -19,9 +19,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-600 rounded-xl mb-3">
-            <span className="text-white text-xl font-bold">T</span>
-          </div>
+          <img src="/favicon.ico" alt="TaskFlow" className="w-12 h-12 mb-3" />
           <h1 className="text-2xl font-semibold text-gray-900">Welcome back</h1>
           <p className="text-gray-500 text-sm mt-1">Sign in to your TaskFlow account</p>
         </div>
