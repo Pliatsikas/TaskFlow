@@ -4,13 +4,14 @@ WORKDIR /app
 
 RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
 
-COPY package.json ./
-COPY prisma ./prisma
+COPY apps/server/package.json ./
+COPY apps/server/prisma ./prisma
+COPY packages/shared ./packages/shared
 
 RUN npm install
 
-COPY src ./src
-COPY tsconfig.json ./
+COPY apps/server/src ./src
+COPY apps/server/tsconfig.json ./
 
 RUN npx prisma generate
 
@@ -18,4 +19,4 @@ RUN npm run build
 
 EXPOSE 4000
 
-CMD ["node", "dist/index.js"]
+CMD ["npx", "prisma", "migrate", "deploy", "&&", "node", "dist/index.js"]
